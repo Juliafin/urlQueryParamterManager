@@ -1,0 +1,22 @@
+{
+  "name": "Query Parameter Manager",
+  "version": "1.0",
+  "description": "A manager for url query parameters",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "/build/index.html"
+  },
+  "permissions": [
+    "declarativeContent",
+    "storage",
+    "webNavigation",
+    "tabs",
+    "activeTab",
+  "http://*/*",
+  "https://*/*"
+]
+}
