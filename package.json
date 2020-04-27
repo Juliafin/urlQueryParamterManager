@@ -4,7 +4,8 @@
   "description": "A manager for url query parameters",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd url-query-parameter-manager && npm run build"
   },
   "author": "Julia Finarovsky",
   "license": "ISC",

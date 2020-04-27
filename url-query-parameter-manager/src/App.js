@@ -50,9 +50,10 @@ class App extends React.Component {
 
     const { id, value } = event.target;
     let newQueryFields = cloneDeep(this.state.queryFields);
-
+    console.log(newQueryFields)
+    console.log('id, value', id, value);
     const index = parseInt(id.split('-')[1], 10) - 1;
-
+    console.log(index, 'INDEX');
     if (id.startsWith("key")) {
       newQueryFields[index].key = value;
     } else if (id.startsWith("value")) {

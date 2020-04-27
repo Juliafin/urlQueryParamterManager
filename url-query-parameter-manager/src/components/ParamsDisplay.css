@@ -13,3 +13,7 @@
   margin-left: 16px;
   align-self: center;
 }
+
+label + .MuiInput-formControl {
+  margin: 10px;
+}
