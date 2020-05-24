@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Profile } from './components/Profile';
+import { Configuration } from './components/Configuration';
 import { ParamsDisplay } from './components/ParamsDisplay';
 import { getCurrentUrl, parseUrlParams } from './utils/parseUrl';
 import { setUrl } from './utils/setUrl';
 import { createQueryString } from './utils/createQueryString';
+import { getConfiguration, saveConfiguration } from './utils/configurationUtils'
 import cloneDeep  from 'lodash.clonedeep';
 import { Container, Button } from '@material-ui/core';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
@@ -17,20 +18,23 @@ class App extends React.Component {
     this.state = {
       url: '',
       tabId: '',
-      queryFields: [defaultFields]
+      queryFields: [defaultFields],
+      currentConfiguration: '',
+      configurations: {}
     }
   }
 
   async componentDidMount() {
     const {currentUrl: url, tabId} = await getCurrentUrl();
+    const { configurations } = await getConfiguration();
     const queryFields = parseUrlParams(url);
-    this.setState({url, queryFields: queryFields.length ? queryFields : this.state.queryFields, tabId});
+    this.setState({
+      configurations,
+      url,
+      queryFields: queryFields.length ? queryFields : this.state.queryFields,
+      tabId
+    });
   }
-
-  // async componentDidUpdate() {
-  //   const url = await getCurrentUrl();
-  //   this.setState({url});
-  // }
 
   queryFieldOnDeleteHandler = (event) => {
 
@@ -43,7 +47,6 @@ class App extends React.Component {
       return {...field, id: index + 1}
     })
 
-    console.log(newQueryFields, 'Fields on delete');
     this.setState({queryFields: newQueryFields});
 
   };
@@ -52,10 +55,7 @@ class App extends React.Component {
 
     const { id, value } = event.target;
     let newQueryFields = cloneDeep(this.state.queryFields);
-    // console.log(newQueryFields)
-    // console.log('id, value', id, value);
     const index = parseInt(id.split('-')[1], 10) - 1;
-    // console.log(index, 'INDEX');
     if (id.startsWith("key")) {
       newQueryFields[index].key = value;
     } else if (id.startsWith("value")) {
@@ -66,10 +66,7 @@ class App extends React.Component {
   };
 
   setUrlHandler = (event) => {
-    console.log('The event!', event);
-    console.log('The state: ', this.state);
     const queryString = createQueryString(this.state.queryFields);
-    console.log('QUERY STRING', queryString);
     setUrl(queryString)
   }
 
@@ -90,13 +87,29 @@ class App extends React.Component {
     this.setState({queryFields: fieldsToAdd});
   }
 
+  onConfigurationChangeHandler = (event) => {
+    const configuration = event.target.value;
+    console.log('configuration: ', configuration);
+    this.setState({currentConfiguration: configuration});
+    console.log('state after setting configuration', this.state);
+  }
+
+  saveConfigurationHandler = (event) => {
+    console.log('Saving configuration');
+    console.log(this.state);
+    saveConfiguration(this.state.currentConfiguration, this.state.queryFields);
+  }
+
 
   render() {
+
     return (
       <div className="App">
         <h1>Url Query Parameter Manager</h1>
         <p>Current url: {this.state.url}</p>
-        <Profile/>
+        <Configuration
+          currentConfiguration={this.state.currentConfiguration}
+          configurationChangeHandler={this.onConfigurationChangeHandler}/>
         <ParamsDisplay 
           queryFieldOnChangeHandler={this.queryFieldOnChangeHandler}
           queryFields={this.state.queryFields}
@@ -110,6 +123,8 @@ class App extends React.Component {
         </Container>
 
         <Button onClick={this.setUrlHandler}>Set Url</Button>
+        <Button
+          onClick={this.saveConfigurationHandler}>Save Configuration</Button>
       </div>
     );
   }
