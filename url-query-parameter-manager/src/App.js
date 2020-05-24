@@ -3,8 +3,10 @@ import './App.css';
 import { Profile } from './components/Profile';
 import { ParamsDisplay } from './components/ParamsDisplay';
 import { getCurrentUrl, parseUrlParams } from './utils/parseUrl';
+import { setUrl } from './utils/setUrl';
+import { createQueryString } from './utils/createQueryString';
 import cloneDeep  from 'lodash.clonedeep';
-import { Container } from '@material-ui/core';
+import { Container, Button } from '@material-ui/core';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 const defaultFields = {key: "name", value: "value", id: 1};
@@ -50,10 +52,10 @@ class App extends React.Component {
 
     const { id, value } = event.target;
     let newQueryFields = cloneDeep(this.state.queryFields);
-    console.log(newQueryFields)
-    console.log('id, value', id, value);
+    // console.log(newQueryFields)
+    // console.log('id, value', id, value);
     const index = parseInt(id.split('-')[1], 10) - 1;
-    console.log(index, 'INDEX');
+    // console.log(index, 'INDEX');
     if (id.startsWith("key")) {
       newQueryFields[index].key = value;
     } else if (id.startsWith("value")) {
@@ -62,6 +64,14 @@ class App extends React.Component {
 
     this.setState({queryFields: newQueryFields});
   };
+
+  setUrlHandler = (event) => {
+    console.log('The event!', event);
+    console.log('The state: ', this.state);
+    const queryString = createQueryString(this.state.queryFields);
+    console.log('QUERY STRING', queryString);
+    setUrl(queryString)
+  }
 
   queryFieldOnAddHandler = (event) => {
     let fieldsToAdd = [];
@@ -98,6 +108,8 @@ class App extends React.Component {
           >
           <AddCircleOutlineRoundedIcon className="addCircle"/>
         </Container>
+
+        <Button onClick={this.setUrlHandler}>Set Url</Button>
       </div>
     );
   }
