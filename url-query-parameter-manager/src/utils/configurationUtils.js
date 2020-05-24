@@ -9,7 +9,7 @@ export const saveConfiguration = async (configurationName, configToSave) => {
   return new Promise((resolve, reject) => {
     window.chrome.storage.sync.set( {configurations} , () => {
       console.log('Configuration has been saved')
-      resolve();
+      resolve(configurations);
     } )
   });
 

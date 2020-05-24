@@ -88,16 +88,19 @@ class App extends React.Component {
   }
 
   onConfigurationChangeHandler = (event) => {
-    const configuration = event.target.value;
-    console.log('configuration: ', configuration);
-    this.setState({currentConfiguration: configuration});
+    console.log(event, 'event: ')
+    const configurationName = event.target.value;
+    console.log('configuration: ', configurationName);
+    const configuration = this.state.configurations[configurationName] || this.state.queryFields;
+    this.setState({currentConfiguration: configurationName, queryFields: configuration});
     console.log('state after setting configuration', this.state);
   }
 
-  saveConfigurationHandler = (event) => {
+  saveConfigurationHandler = async(event) => {
     console.log('Saving configuration');
     console.log(this.state);
-    saveConfiguration(this.state.currentConfiguration, this.state.queryFields);
+    const configurations = await saveConfiguration(this.state.currentConfiguration, this.state.queryFields);
+    this.setState({configurations});
   }
 
 
@@ -109,7 +112,9 @@ class App extends React.Component {
         <p>Current url: {this.state.url}</p>
         <Configuration
           currentConfiguration={this.state.currentConfiguration}
-          configurationChangeHandler={this.onConfigurationChangeHandler}/>
+          configurationChangeHandler={this.onConfigurationChangeHandler}
+          configurationOptions={Object.keys(this.state.configurations)}
+        />
         <ParamsDisplay 
           queryFieldOnChangeHandler={this.queryFieldOnChangeHandler}
           queryFields={this.state.queryFields}
