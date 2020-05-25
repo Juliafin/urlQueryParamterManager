@@ -1,10 +1,10 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {Container, TextField} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 export const Configuration = (props) => {
-  const { configurationChangeHandler, currentConfiguration } = props;
+  const { configurationChangeHandler } = props;
   return (
     <Container>
       <h2>Configuration name</h2>

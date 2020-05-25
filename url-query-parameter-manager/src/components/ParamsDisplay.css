@@ -17,3 +17,7 @@
 label + .MuiInput-formControl {
   margin: 10px;
 }
+
+.MuiAutocomplete-inputRoot input.MuiAutocomplete-input {
+  width: auto;
+}

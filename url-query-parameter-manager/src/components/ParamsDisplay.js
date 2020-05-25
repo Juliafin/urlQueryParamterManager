@@ -1,9 +1,10 @@
 import React from 'react';
 import { TextField, Container, Grid } from '@material-ui/core';
-import './ParamsDisplay.css';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import RemoveCircleRoundedIcon from '@material-ui/icons/RemoveCircleRounded';
+import './ParamsDisplay.css';
 
-export const ParamsDisplay = ({ queryFieldOnChangeHandler, queryFieldOnDeleteHandler, queryFields}) => {
+export const ParamsDisplay = ({ queryFieldOnChangeHandler, queryFieldOnDeleteHandler, queryFields, keyHistory}) => {
 
   const queryFieldElements = queryFields
     .map((field) => {
@@ -11,15 +12,28 @@ export const ParamsDisplay = ({ queryFieldOnChangeHandler, queryFieldOnDeleteHan
       const keyId = `key-${id}`;
       const valueId = `value-${id}`;
       const buttonId = `button-${id}`;
+      const autoCompleteID = `key-autocomplete-${id}`
       return (
         <div className="flex">
-          <TextField
-            onChange={queryFieldOnChangeHandler}
-            label={key}
-            className="key"
-            name={keyId}
-            id={keyId}
-            value={key}
+          <Autocomplete
+            id={autoCompleteID}
+            freeSolo
+            options={Object.keys(keyHistory)}
+            onChange={(event, keyValue) => {
+              console.log('VALUE IN AUTO COMPLETE', keyValue)
+              queryFieldOnChangeHandler({target: {value: keyValue, id: keyId}}, keyValue)
+            }}
+            renderInput={(props) => (
+              <TextField
+                {...props}
+                onChange={queryFieldOnChangeHandler}
+                label={key}
+                className="key"
+                name={keyId}
+                id={keyId}
+                value={key}
+              />
+          )}
           />
           <TextField
             label={value}

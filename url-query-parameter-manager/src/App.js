@@ -55,11 +55,16 @@ class App extends React.Component {
 
   };
 
-  queryFieldOnChangeHandler = (event) => {
+  queryFieldOnChangeHandler = (event, fieldValue) => {
 
     const { id, value } = event.target;
+    console.log(event.target, 'EVENT TARGET')
+    console.log(id, 'ID')
+    console.log(value, 'value')
     let newQueryFields = cloneDeep(this.state.queryFields);
-    const index = parseInt(id.split('-')[1], 10) - 1;
+    console.log(newQueryFields, 'NEW QUERY FIELDS');
+    const idArray = id.split('-');
+    const index = parseInt(idArray[idArray.length - 1], 10) - 1;
     if (id.startsWith("key")) {
       newQueryFields[index].key = value;
     } else if (id.startsWith("value")) {
@@ -103,10 +108,10 @@ class App extends React.Component {
     const configurations = await saveConfiguration(this.state.currentConfiguration, this.state.queryFields);
 
     const keys = await setKeyHistory(this.state.queryFields);
+    console.log(keys, 'KEYS IN SAVE CONFIGURATION')
     this.setState({configurations}, () => {
     });
   }
-
 
   render() {
 
@@ -116,15 +121,15 @@ class App extends React.Component {
         <h1>Url Query Parameter Manager</h1>
         <p>Current url: {this.state.url}</p>
         <Configuration
-          currentConfiguration={this.state.currentConfiguration}
           configurationChangeHandler={this.onConfigurationChangeHandler}
           configurationOptions={Object.keys(this.state.configurations)}
         />
         <ParamsDisplay 
           queryFieldOnChangeHandler={this.queryFieldOnChangeHandler}
           queryFields={this.state.queryFields}
-          queryFieldOnDeleteHandler={this.queryFieldOnDeleteHandler}/
-        >
+          queryFieldOnDeleteHandler={this.queryFieldOnDeleteHandler}
+          keyHistory={this.state.keyHistory}
+          />
         <Container 
           className="flex addContainer"
           onClick={this.queryFieldOnAddHandler}
