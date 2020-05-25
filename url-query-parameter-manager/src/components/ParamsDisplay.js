@@ -23,6 +23,7 @@ export const ParamsDisplay = ({ queryFieldOnChangeHandler, queryFieldOnDeleteHan
               console.log('VALUE IN AUTO COMPLETE', keyValue)
               queryFieldOnChangeHandler({target: {value: keyValue, id: keyId}}, keyValue)
             }}
+            inputValue={key}
             renderInput={(props) => (
               <TextField
                 {...props}
