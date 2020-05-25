@@ -29,7 +29,7 @@ class App extends React.Component {
     const {currentUrl: url, tabId} = await getCurrentUrl();
     const { configurations } = await getConfiguration();
     const { keyHistory } = await getKeyHistory();
-    console.log('Key history in component did mount: ', keyHistory);
+    console.log('key history in mount', keyHistory)
     const queryFields = parseUrlParams(url);
     this.setState({
       configurations,
@@ -104,7 +104,7 @@ class App extends React.Component {
 
     const keys = await setKeyHistory(this.state.queryFields);
     console.log(keys, 'KEYS IN SAVE CONFIGURATION')
-    this.setState({configurations}, () => {
+    this.setState({configurations, keyHistory: keys}, () => {
     });
   }
 
