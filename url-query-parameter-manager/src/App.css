@@ -42,3 +42,13 @@
 .icon {
   cursor: pointer;
 }
+
+.configurationButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.configurationButtonContainer > .configurationButton {
+  margin: 4px 10px;
+}
