@@ -58,11 +58,7 @@ class App extends React.Component {
   queryFieldOnChangeHandler = (event, fieldValue) => {
 
     const { id, value } = event.target;
-    console.log(event.target, 'EVENT TARGET')
-    console.log(id, 'ID')
-    console.log(value, 'value')
     let newQueryFields = cloneDeep(this.state.queryFields);
-    console.log(newQueryFields, 'NEW QUERY FIELDS');
     const idArray = id.split('-');
     const index = parseInt(idArray[idArray.length - 1], 10) - 1;
     if (id.startsWith("key")) {
@@ -77,7 +73,6 @@ class App extends React.Component {
   setUrlHandler = (event) => {
     const queryString = createQueryString(this.state.queryFields);
     const url = this.state.url.replace(/(.*)(\?.*)/, "$1")
-    console.log('URL', url)
     setUrl(queryString, url)
   }
 

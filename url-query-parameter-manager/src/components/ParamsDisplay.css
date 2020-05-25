@@ -14,8 +14,15 @@
   align-self: center;
 }
 
-label + .MuiInput-formControl {
+label + div.MuiInput-formControl {
+  margin-top: 0;
   margin: 10px;
+  font-size: 12.5px;
+}
+
+.MuiFormControl-root.MuiTextField-root.key.MuiFormControl-marginDense.MuiFormControl-fullWidth {
+  height: 32px;
+  margin: 2px 10px;
 }
 
 .MuiAutocomplete-inputRoot input.MuiAutocomplete-input {
