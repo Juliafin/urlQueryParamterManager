@@ -33,7 +33,7 @@ export const ParamsDisplay = ({ queryFieldOnChangeHandler, queryFieldOnDeleteHan
             onClick={queryFieldOnDeleteHandler}
             id={buttonId}
             >
-            <RemoveCircleRoundedIcon className="removeCircle"/>
+            <RemoveCircleRoundedIcon className="icon removeCircle"/>
           </div>
         </div>
       );

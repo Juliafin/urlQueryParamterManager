@@ -5,7 +5,7 @@ import { ParamsDisplay } from './components/ParamsDisplay';
 import { getCurrentUrl, parseUrlParams } from './utils/parseUrl';
 import { setUrl } from './utils/setUrl';
 import { createQueryString } from './utils/createQueryString';
-import { getConfiguration, saveConfiguration } from './utils/configurationUtils'
+import { getConfiguration, saveConfiguration, getKeyHistory, setKeyHistory } from './utils/configurationUtils'
 import cloneDeep  from 'lodash.clonedeep';
 import { Container, Button } from '@material-ui/core';
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
@@ -20,19 +20,23 @@ class App extends React.Component {
       tabId: '',
       queryFields: [defaultFields],
       currentConfiguration: '',
-      configurations: {}
+      configurations: {},
+      keyHistory: {}
     }
   }
 
   async componentDidMount() {
     const {currentUrl: url, tabId} = await getCurrentUrl();
     const { configurations } = await getConfiguration();
+    const { keyHistory } = await getKeyHistory();
+    console.log('Key history in component did mount: ', keyHistory);
     const queryFields = parseUrlParams(url);
     this.setState({
       configurations,
-      url,
+      keyHistory,
       queryFields: queryFields.length ? queryFields : this.state.queryFields,
-      tabId
+      tabId,
+      url
     });
   }
 
@@ -81,31 +85,30 @@ class App extends React.Component {
     fieldsToAdd = fieldsToAdd.map((field, index) => {
       return {...field, id: index + 1}
     })
-
-    console.log(fieldsToAdd, 'fields on add');
-
     this.setState({queryFields: fieldsToAdd});
   }
 
   onConfigurationChangeHandler = (event) => {
-    console.log(event, 'event: ')
+
     const configurationName = event.target.value;
-    console.log('configuration: ', configurationName);
     const configuration = this.state.configurations[configurationName] || this.state.queryFields;
-    this.setState({currentConfiguration: configurationName, queryFields: configuration});
-    console.log('state after setting configuration', this.state);
+    this.setState({currentConfiguration: configurationName, queryFields: configuration}, () => {
+
+    });
   }
 
   saveConfigurationHandler = async(event) => {
-    console.log('Saving configuration');
-    console.log(this.state);
     const configurations = await saveConfiguration(this.state.currentConfiguration, this.state.queryFields);
-    this.setState({configurations});
+
+    const keys = await setKeyHistory(this.state.queryFields);
+    this.setState({configurations}, () => {
+    });
   }
 
 
   render() {
 
+    const isConfigurationButtonDisabled = !Boolean(this.state.currentConfiguration);
     return (
       <div className="App">
         <h1>Url Query Parameter Manager</h1>
@@ -124,12 +127,18 @@ class App extends React.Component {
           className="flex addContainer"
           onClick={this.queryFieldOnAddHandler}
           >
-          <AddCircleOutlineRoundedIcon className="addCircle"/>
+          <AddCircleOutlineRoundedIcon className="icon addCircle"/>
         </Container>
 
-        <Button onClick={this.setUrlHandler}>Set Url</Button>
         <Button
-          onClick={this.saveConfigurationHandler}>Save Configuration</Button>
+          onClick={this.setUrlHandler}
+          variant="outlined"
+        >Set Url</Button>
+        <Button
+          onClick={this.saveConfigurationHandler}
+          disabled={isConfigurationButtonDisabled}
+          variant="outlined"
+        >Save Configuration</Button>
       </div>
     );
   }

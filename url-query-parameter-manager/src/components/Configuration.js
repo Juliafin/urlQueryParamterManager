@@ -1,12 +1,10 @@
 import React, {useRef} from 'react';
-
 import {Container, TextField} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 export const Configuration = (props) => {
-  const { configurationChangeHandler } = props;
-  const inputelement = useRef(null)
+  const { configurationChangeHandler, currentConfiguration } = props;
   return (
     <Container>
       <h2>Configuration name</h2>
@@ -15,33 +13,22 @@ export const Configuration = (props) => {
           id="free-solo-demo"
           freeSolo
           options={props.configurationOptions}
-          onChange={(event) => {
-            console.log(inputelement, 'INPUT ELEMENT');
-            event.target = inputelement.current;
-            props.configurationChangeHandler(event);
-          }}
-          onSubmit={(event) => {
-            event.preventDefault();
-            console.log('The event in submit', event)
+          onChange={(event, value) => {
+            configurationChangeHandler({target: {value}}, 'autocomplete');
           }}
           renderInput={(props) => (
             <TextField
               {...props}
-              inputRef={inputelement}
-              onSubmit={(event) => {
-                event.preventDefault();
-                console.log('The event in submit', event)
-              }}
-              onChange={configurationChangeHandler}
               id="standard-basic"
               label="Configuration"
               margin="normal"
               variant="outlined"
+              onChange={(event) => {
+                configurationChangeHandler(event, 'text field');
+              }}
             />
         )}
       />
-
-
     </Container>
   )
 }
