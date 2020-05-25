@@ -1,6 +1,6 @@
-export const setUrl = (queryString) => {
+export const setUrl = (queryString, url) => {
 
-  const script = `history.replaceState("", "", "${window.location.href..replace(/(.*)(\?.*)/, "$1")}/${queryString}")`
+  const script = `history.replaceState("", "", "${url}/${queryString}")`
 
   window.chrome.tabs.executeScript(null, {code: script});
 }

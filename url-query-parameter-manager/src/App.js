@@ -71,7 +71,9 @@ class App extends React.Component {
 
   setUrlHandler = (event) => {
     const queryString = createQueryString(this.state.queryFields);
-    setUrl(queryString)
+    const url = this.state.url.replace(/(.*)(\?.*)/, "$1")
+    console.log('URL', url)
+    setUrl(queryString, url)
   }
 
   queryFieldOnAddHandler = (event) => {
