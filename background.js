@@ -1,9 +1,6 @@
-var name = "abcdef"
-chrome.runtime.onInstalled.addListener(() => {
-  
-  console.log('hello there!');
-  
-  console.log('WINDOW: ', window);
+
+chrome.runtime.onInstalled.addListener(() => {  
+
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules(
       [
@@ -43,7 +40,6 @@ chrome.webNavigation.onCompleted.addListener((tab) => {
       storeCurrentUrl(details.url, tab.tabId);
     })
   }
-  // getCurrentTabUrl();
 })
 
 chrome.tabs.onActiveChanged.addListener((nav) => {
@@ -54,3 +50,19 @@ chrome.tabs.onActiveChanged.addListener((nav) => {
   getCurrentTabUrl();
 });
 
+chrome.tabs.onActivated.addListener((nav) => {
+  // console.log('URL:', url);
+  console.log('nav', nav);
+  
+
+  getCurrentTabUrl();
+});
+
+
+chrome.tabs.onHighlighted.addListener((nav) => {
+  // console.log('URL:', url);
+  console.log('nav', nav);
+  
+
+  getCurrentTabUrl();
+});

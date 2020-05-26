@@ -6,7 +6,6 @@ export const saveConfiguration = async (configurationName, configToSave) => {
 
   return new Promise((resolve, reject) => {
     window.chrome.storage.sync.set( {configurations} , () => {
-      console.log('Configuration has been saved')
       resolve(configurations);
     } )
   });
@@ -45,9 +44,8 @@ export const setKeyHistory = async (currentConfig) => {
   });
 
   return new Promise((resolve, reject) => {
-  window.chrome.storage.sync.set({keyHistory: storedKeyHistory}, (keyHistory) => {
-    console.log('Key history stored', storedKeyHistory);
+    window.chrome.storage.sync.set({keyHistory: storedKeyHistory}, (keyHistory) => {
     resolve(storedKeyHistory);
-  });
+    });
   })
 }
