@@ -20,6 +20,7 @@ export class UrlManagerContextProvider extends React.Component {
     super(props);
     this.state = {
       url: "",
+      newUrl: "",
       tabId: "",
       queryFields: [defaultFields],
       currentConfiguration: "",
@@ -38,6 +39,7 @@ export class UrlManagerContextProvider extends React.Component {
       keyHistory,
       queryFields: queryFields.length ? queryFields : this.state.queryFields,
       tabId,
+      newUrl: url,
       url,
     });
   }
@@ -52,7 +54,9 @@ export class UrlManagerContextProvider extends React.Component {
       return { ...field, id: index + 1 };
     });
 
-    this.setState({ queryFields: newQueryFields });
+    this.setState({ queryFields: newQueryFields } ,() => {
+      this.setNewUrl();
+    });
   };
 
   queryFieldOnChangeHandler = (event, fieldValue) => {
@@ -66,8 +70,17 @@ export class UrlManagerContextProvider extends React.Component {
       newQueryFields[index].value = value;
     }
 
-    this.setState({ queryFields: newQueryFields });
+    this.setState({ queryFields: newQueryFields }, () => {
+      this.setNewUrl();
+    });
   };
+
+  setNewUrl = () => {
+    const queryString = createQueryString(this.state.queryFields);
+    const url = this.state.url.replace(/(.*)(\?.*)/, "$1");
+    const newUrl = `${url}${queryString}`;
+    this.setState({newUrl})
+  }
 
   setUrlHandler = (event) => {
     const queryString = createQueryString(this.state.queryFields);
@@ -89,7 +102,9 @@ export class UrlManagerContextProvider extends React.Component {
     fieldsToAdd = fieldsToAdd.map((field, index) => {
       return { ...field, id: index + 1 };
     });
-    this.setState({ queryFields: fieldsToAdd });
+    this.setState({ queryFields: fieldsToAdd }, () => {
+      this.setNewUrl();
+    });
   };
 
   onConfigurationChangeHandler = (event) => {
@@ -98,7 +113,9 @@ export class UrlManagerContextProvider extends React.Component {
       this.state.configurations[configurationName] || this.state.queryFields;
     this.setState(
       { currentConfiguration: configurationName, queryFields: configuration },
-      () => {}
+      () => {
+        this.setNewUrl();
+      }
     );
   };
 
@@ -150,6 +167,7 @@ export class UrlManagerContextProvider extends React.Component {
           configurations: this.state.configurations,
           currentConfiguration: this.state.currentConfiguration,
           keyHistory: this.state.keyHistory,
+          newUrl: this.state.newUrl,
           queryFields: this.state.queryFields,
           tabId: this.state.tabId,
           url: this.state.url

@@ -2,12 +2,13 @@ import React from 'react';
 import { ManagerContext } from '../../store/URLManagerContext';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
+import DeleteIcon from '@material-ui/icons/Delete';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import Typography from '@material-ui/core/Typography';
-import DeleteIcon from '@material-ui/icons/Delete';
+import TextField from '@material-ui/core/TextField';
 import { IconButton } from '@material-ui/core';
 import "./storedConfigurationLayout.css";
 
@@ -50,8 +51,6 @@ const StoredConfigurationLayout = () => {
           <ListItemText primary={key}/>
           <IconButton edge="end" aria-label="delete">
               <DeleteIcon onClick={(event) => {
-                console.log('Delete clicked, index: ', index)
-                console.log('current key: ', key);
                 handlers.deleteStoredKeyHistoryHandler(key);
               }}/>
           </IconButton>
@@ -62,8 +61,6 @@ const StoredConfigurationLayout = () => {
   })
 
   const doValuesExist = selectedKey && keyHistory[selectedKey] && keyHistory[selectedKey].length;
-
-  console.log('do Values Exist', doValuesExist);
 
   const storedValues = doValuesExist ? keyHistory[selectedKey].map((value, valueIndex) => {
     return (
@@ -88,10 +85,26 @@ const StoredConfigurationLayout = () => {
   }) : null;
 
 
+  const addAKeyField = <TextField
+    label="Add a key"
+    className="addAKeyField"
+    name="addAKeyField"
+    margin="normal"
+    placeholder="Key"
+    InputLabelProps={{
+      shrink: true,
+    }}
+  />
+
   return (
     <Container className="keyHistoryContainer">
       <Typography className="storedKeysHeader" variant="h6" >Stored Keys</Typography>
       <List dense="true" component="div" className="savedKeyList">
+        <ListSubheader>
+          <Container className="addAKeyContainer">
+            {addAKeyField}
+          </Container>
+        </ListSubheader>
         {savedKeys}
       </List>
       <Typography className="storedValuesHeader" variant="h6" >Stored Values</Typography>

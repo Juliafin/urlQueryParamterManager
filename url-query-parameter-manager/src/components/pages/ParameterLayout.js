@@ -13,6 +13,7 @@ const ParameterLayout = () => {
     configurations,
     handlers,
     keyHistory,
+    newUrl,
     queryFields,
     tabId,
     url,
@@ -23,6 +24,7 @@ const ParameterLayout = () => {
     <div className="configurationLayout">
       <h1>Url Query Parameter Manager</h1>
       <p>Current url: {url}</p>
+      <p>New url: {newUrl}</p>
       <ConfigurationInput
         configurationChangeHandler={handlers.onConfigurationChangeHandler}
         configurationOptions={Object.keys(configurations)}
