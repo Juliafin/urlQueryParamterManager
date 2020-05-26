@@ -35,6 +35,7 @@ const getCurrentTabUrl = () => {
 chrome.webNavigation.onCompleted.addListener((tab) => {
   if (tab.tabId) {
     chrome.webNavigation.getFrame({frameId: 0, tabId: tab.tabId}, (details) => {
+      console.log('navigation completed to new page')
       console.log('Details: ', details);
       console.log('Url', details.url);
       storeCurrentUrl(details.url, tab.tabId);
@@ -44,7 +45,7 @@ chrome.webNavigation.onCompleted.addListener((tab) => {
 
 chrome.tabs.onActiveChanged.addListener((nav) => {
   // console.log('URL:', url);
-  console.log('nav', nav);
+  console.log('active tab changed', nav);
   
 
   getCurrentTabUrl();
@@ -52,7 +53,7 @@ chrome.tabs.onActiveChanged.addListener((nav) => {
 
 chrome.tabs.onActivated.addListener((nav) => {
   // console.log('URL:', url);
-  console.log('nav', nav);
+  console.log('tab activated', nav);
   
 
   getCurrentTabUrl();
@@ -61,7 +62,16 @@ chrome.tabs.onActivated.addListener((nav) => {
 
 chrome.tabs.onHighlighted.addListener((nav) => {
   // console.log('URL:', url);
-  console.log('nav', nav);
+  console.log('tab highlighted', nav);
+  
+
+  getCurrentTabUrl();
+
+})
+
+chrome.windows.onFocusChanged.addListener((nav) => {
+  // console.log('URL:', url);
+  console.log('window focus changed', nav);
   
 
   getCurrentTabUrl();

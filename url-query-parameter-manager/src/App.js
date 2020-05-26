@@ -1,13 +1,14 @@
 import React from "react";
 import { Route, Link as RouterLink } from 'react-router-dom';
-import ConfigurationLayout from './components/pages/ConfigurationLayout';
+import ParameterLayout from './components/pages/ParameterLayout';
+import StoredConfigurationLayout from './components/pages/StoredConfigurationLayout';
 import { Container, Button } from "@material-ui/core";
 
 
 const App = () => {
 
   return (
-    <Container>
+    <Container className="navContainer">
       <div>
       <Button color="primary" component={RouterLink} to="/">
         Parameters
@@ -17,15 +18,8 @@ const App = () => {
       </Button>
       </div>
 
-      <Route exact path="/config" render={() => {
-        return (
-
-          <div>
-            <p>Config!</p>
-        </div>
-          )
-      }}  />
-      <Route exact path="/" component={ConfigurationLayout}/>
+      <Route exact path="/config" component={StoredConfigurationLayout}/>
+      <Route exact path="/" component={ParameterLayout}/>
     </Container>
   )
 

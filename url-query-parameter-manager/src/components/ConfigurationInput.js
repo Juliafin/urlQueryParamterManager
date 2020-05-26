@@ -3,7 +3,7 @@ import {Container, TextField} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
-export const Configuration = (props) => {
+export const ConfigurationInput = (props) => {
   const { configurationChangeHandler } = props;
   return (
     <Container>

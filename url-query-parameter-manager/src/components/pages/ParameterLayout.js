@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Button } from "@material-ui/core";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import "./configurationLayout.css";
-import { Configuration } from "../Configuration";
+import "./ParameterLayout.css";
+import { ConfigurationInput } from "../ConfigurationInput";
 import { ParamsDisplay } from "../ParamsDisplay";
 import { ManagerContext } from "../../store/URLManagerContext";
 
 
-const ConfigurationLayout = () => {
+const ParameterLayout = () => {
   const {
     currentConfiguration,
     configurations,
@@ -23,7 +23,7 @@ const ConfigurationLayout = () => {
     <div className="configurationLayout">
       <h1>Url Query Parameter Manager</h1>
       <p>Current url: {url}</p>
-      <Configuration
+      <ConfigurationInput
         configurationChangeHandler={handlers.onConfigurationChangeHandler}
         configurationOptions={Object.keys(configurations)}
       />
@@ -61,4 +61,4 @@ const ConfigurationLayout = () => {
   );
 };
 
-export default ConfigurationLayout;
+export default ParameterLayout;
