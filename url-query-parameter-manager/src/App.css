@@ -1,0 +1,19 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #7e7b7b;
+}
+
+.navContainer .btn {
+  background-color: white ;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color;
+  transition-duration: 350ms;
+
+}
+
+.navContainer .btn:hover {
+  background-color: #d7dde6;
+
+}

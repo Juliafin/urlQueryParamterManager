@@ -1,0 +1,25 @@
+.keyHistoryContainer {
+  height: 325px;
+}
+
+.savedKeyList {
+  height: 150px;
+  overflow-y: scroll;
+  border: 1px solid #8d8b8b;
+  margin-top: 1rem;
+}
+
+h6.MuiTypography-root.MuiTypography-h5 {
+  margin: .5rem 0;
+}
+
+
+div.MuiListItem-button {
+  height: 1.7rem;
+}
+
+
+
+.listItem {
+  height: 10px;
+}

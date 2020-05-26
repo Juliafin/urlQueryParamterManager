@@ -6,6 +6,7 @@ import {
   getConfiguration,
   saveConfiguration,
   getKeyHistory,
+  saveKeyHistory,
   setKeyHistory,
 } from "../utils/configurationUtils";
 import cloneDeep from "lodash.clonedeep";
@@ -111,6 +112,23 @@ export class UrlManagerContextProvider extends React.Component {
     this.setState({ configurations, keyHistory: keys }, () => {});
   };
 
+  deleteStoredKeyHistoryHandler = async (keyToDelete) => {
+    const keyHistory = cloneDeep(this.state.keyHistory);
+    delete keyHistory[keyToDelete];
+    this.setState({keyHistory});
+    await saveKeyHistory(keyHistory);
+  }
+
+  deleteStoredKeyHistoryValueHandler = async (valuetoDelete, key) => {
+    const keyHistory = cloneDeep(this.state.keyHistory);
+    const valueIndex = keyHistory[key] && keyHistory[key].indexOf(valuetoDelete);
+    if (valueIndex !== -1) {
+      keyHistory[key].splice(valueIndex, 1);
+    }
+    this.setState({keyHistory});
+    await saveKeyHistory(keyHistory);
+  }
+
 
   render() {
     const { children } = this.props;
@@ -120,6 +138,8 @@ export class UrlManagerContextProvider extends React.Component {
       <ManagerContext.Provider
         value={{
           handlers: {
+            deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
+            deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
             queryFieldOnChangeHandler: this.queryFieldOnChangeHandler,
             setUrlHandler: this.setUrlHandler,

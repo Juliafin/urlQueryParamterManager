@@ -49,3 +49,11 @@ export const setKeyHistory = async (currentConfig) => {
     });
   })
 }
+
+export const saveKeyHistory = (keyHistory) => {
+  return new Promise((resolve, reject) => {
+    window.chrome.storage.sync.set({keyHistory}, (keyHistory) => {
+    resolve(keyHistory);
+    });
+  })
+} 
