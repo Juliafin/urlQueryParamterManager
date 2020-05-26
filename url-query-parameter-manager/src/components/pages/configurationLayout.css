@@ -1,0 +1,28 @@
+.configurationLayout {
+  text-align: center;
+}
+
+.addircle {
+  font-size: 36px !important;
+  margin-left: 16px;
+  align-self: center;
+}
+
+.addContainer{
+  margin-top: 10px;
+  font-size: 36px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.configurationButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.configurationButtonContainer > .configurationButton {
+  margin: 4px 10px;
+}
