@@ -146,7 +146,7 @@ export class UrlManagerContextProvider extends React.Component {
     await saveKeyHistory(keyHistory);
   }
 
-  importKeyHistoryHandler = (importedJson) => {
+  importKeyHistoryHandler = async(importedJson) => {
 
     const keyHistory = cloneDeep(this.state.keyHistory);
 
@@ -184,6 +184,7 @@ export class UrlManagerContextProvider extends React.Component {
     })
 
     this.setState({keyHistory});
+    await saveKeyHistory(keyHistory);
   }
 
   render() {
