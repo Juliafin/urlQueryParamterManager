@@ -146,6 +146,45 @@ export class UrlManagerContextProvider extends React.Component {
     await saveKeyHistory(keyHistory);
   }
 
+  importKeyHistoryHandler = (importedJson) => {
+
+    const keyHistory = cloneDeep(this.state.keyHistory);
+
+    Object.keys(importedJson).forEach((key) => {
+      
+      const values = importedJson[key];
+      // Validate that the key refers to an array
+      if (!Array.isArray(values)) {
+        throw new Error('Imported JSON is formatted improperly')
+      }
+
+      // Validate the all values in the array are strings for consistency
+      const areAllValuesStrings = values.every((k) => {
+        return typeof k === 'string';
+      });
+
+
+      if (!areAllValuesStrings) {
+        throw new Error('Imported JSON is formatted improperly')
+      }
+
+      // If the key does not exist, simply write the array into the keyHistory otherwise loop through and check if each value already exists
+      if (!keyHistory[key]) {
+        keyHistory[key] = values.sort();
+      } else {
+        values.forEach((val) => {
+          if (!keyHistory[key].includes(val)) {
+            keyHistory[key].push(val)
+          }
+        })
+        
+        keyHistory[key] = keyHistory[key].sort();
+      }
+
+    })
+
+    this.setState({keyHistory});
+  }
 
   render() {
     const { children } = this.props;
@@ -157,6 +196,7 @@ export class UrlManagerContextProvider extends React.Component {
           handlers: {
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
+            importKeyHistoryHandler: this.importKeyHistoryHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
             queryFieldOnChangeHandler: this.queryFieldOnChangeHandler,
             setUrlHandler: this.setUrlHandler,
