@@ -46,6 +46,7 @@ const StoredConfigurationLayout = () => {
     return (
       <Container>
         <ListItem
+          key={index}
           button
           selected={selectedIndex === index}
           onClick={(event) => handleListKeyItemClick(event, index, key)}
@@ -68,6 +69,7 @@ const StoredConfigurationLayout = () => {
     return (
       <Container>
         <ListItem
+          key={valueIndex}
           button
           selected={selectedValueIndex === valueIndex}
           onClick={(event) => handleListValueItemClick(event, valueIndex, value)}

@@ -19,6 +19,7 @@ const ParameterLayout = () => {
     url,
   } = React.useContext(ManagerContext);
 
+
   const isConfigurationButtonDisabled = !Boolean(currentConfiguration);
   return (
     <div className="configurationLayout">

@@ -24,7 +24,7 @@ const storeCurrentUrl = (url, tabId) => {
 const getCurrentTabUrl = () => {
   chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
     console.log('TAB!', tab);
-    const url = tab[0].url;
+    const url = (tab[0] && tab[0].url) || '';
     console.log('current url: ', url);
     storeCurrentUrl(url, tab[0].id);
     

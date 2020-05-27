@@ -10,7 +10,7 @@ export const ParamsDisplay = ({
   queryFields,
   keyHistory,
 }) => {
-  const queryFieldElements = queryFields.map((field) => {
+  const queryFieldElements = queryFields.map((field, index) => {
     const { key, value, id } = field;
     const keyId = `key-${id}`;
     const valueId = `value-${id}`;
@@ -20,7 +20,7 @@ export const ParamsDisplay = ({
     console.log(key, keyHistory, 'key and keyhistory')
     console.log('OPTIONS!!!', keyHistory[key]);
     return (
-      <div className="flex">
+      <div key={index} className="flex">
         <Autocomplete
           id={autoCompleteID}
           freeSolo

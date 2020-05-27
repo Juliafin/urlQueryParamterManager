@@ -1,6 +1,10 @@
 export const saveConfiguration = async (configurationName, configToSave) => {
 
-  let { configurations } = await getConfiguration() || {};
+  let { configurations } = await getConfiguration();
+
+  if (!configurations) {
+    configurations = {};
+  }
 
   configurations[configurationName] = configToSave;
 
