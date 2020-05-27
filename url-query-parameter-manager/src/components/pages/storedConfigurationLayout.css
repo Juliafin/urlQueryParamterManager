@@ -1,3 +1,11 @@
+.configurationLayout p {
+  margin: 2px;
+}
+
+.configurationLayout h2 {
+  margin: 5px;
+}
+
 .keyHistoryContainer {
   height: 325px;
 }
