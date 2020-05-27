@@ -1,12 +1,12 @@
 import React from 'react';
 import { ManagerContext } from '../../store/URLManagerContext';
+import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { IconButton } from '@material-ui/core';
@@ -19,6 +19,10 @@ const StoredConfigurationLayout = () => {
 
   const [selectedValueIndex, setSelectedValueIndex] = React.useState(-1)
   const [selectedValue, setSelectedValue] = React.useState("");
+  console.log('selected value', selectedValue);
+
+  const [addKeyInputValue, setAddKeyInputValue] = React.useState("");
+  const [addValueInputValue, setAddValueInputValue] = React.useState("");
 
 
   const handleListKeyItemClick = (event, index, key) => {
@@ -91,24 +95,71 @@ const StoredConfigurationLayout = () => {
     name="addAKeyField"
     margin="normal"
     placeholder="Key"
+    value={addKeyInputValue}
+    onChange={(event) => {
+      const {value} = event.target;
+      setAddKeyInputValue(value);
+    }}
     InputLabelProps={{
       shrink: true,
     }}
   />
 
+  const addAValueField = <TextField
+    label="Add a value"
+    className="addAValueField"
+    name="addAValueField"
+    margin="normal"
+    placeholder="value"
+    value={addValueInputValue}
+    onChange={(event) => {
+      const {value} = event.target;
+      console.log('Adding value: ', value);
+      setAddValueInputValue(value);
+    }}
+    InputLabelProps={{
+      shrink: true,
+    }}
+/>
+
   return (
     <Container className="keyHistoryContainer">
       <Typography className="storedKeysHeader" variant="h6" >Stored Keys</Typography>
       <List dense="true" component="div" className="savedKeyList">
-        <ListSubheader>
-          <Container className="addAKeyContainer">
-            {addAKeyField}
-          </Container>
-        </ListSubheader>
+
+      <Container className="addAKeyContainer">
+        {addAKeyField}
+        <IconButton
+          onClick={() => {
+            if (!keyHistory[addKeyInputValue]) {
+              handlers.addNewKeyHistoryKey(addKeyInputValue);
+              // Clear the input if it's successful
+              setAddKeyInputValue("");
+            }
+          }}
+          edge="end">
+          <AddCircleOutlineRoundedIcon className="icon addCircle"/>
+        </IconButton>
+      </Container>
         {savedKeys}
       </List>
       <Typography className="storedValuesHeader" variant="h6" >Stored Values</Typography>
       <List dense="true" component="div" className="savedKeyList">
+      <Container className="addAKeyContainer">
+        {addAValueField}
+        <IconButton
+          disabled={!selectedKey}
+          onClick={() => {
+            if (!keyHistory[selectedKey].includes(addValueInputValue)) {
+              handlers.addNewValueToHistoryKey(addValueInputValue, selectedKey);
+              // Clear the input if it's successful
+              setAddValueInputValue("");
+            }
+          }}
+          edge="end">
+          <AddCircleOutlineRoundedIcon className="icon addCircle"/>
+        </IconButton>
+      </Container>
         {storedValues}
       </List>
 

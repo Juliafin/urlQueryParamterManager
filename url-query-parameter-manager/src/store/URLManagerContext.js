@@ -187,6 +187,21 @@ export class UrlManagerContextProvider extends React.Component {
     await saveKeyHistory(keyHistory);
   }
 
+  addNewKeyHistoryKey = async(newKeyToadd) => {
+    const keyHistory = cloneDeep(this.state.keyHistory);
+    keyHistory[newKeyToadd] = [];
+    this.setState({keyHistory});
+    await saveKeyHistory(keyHistory);
+  }
+
+  addNewValueToHistoryKey = async(newValueToadd, selectedKey) => {
+    const keyHistory = cloneDeep(this.state.keyHistory);
+    keyHistory[selectedKey].push(newValueToadd);
+    this.setState({keyHistory});
+    await saveKeyHistory(keyHistory);
+
+  } 
+
   render() {
     const { children } = this.props;
 
@@ -195,6 +210,8 @@ export class UrlManagerContextProvider extends React.Component {
       <ManagerContext.Provider
         value={{
           handlers: {
+            addNewKeyHistoryKey: this.addNewKeyHistoryKey,
+            addNewValueToHistoryKey: this.addNewValueToHistoryKey,
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
             importKeyHistoryHandler: this.importKeyHistoryHandler,
