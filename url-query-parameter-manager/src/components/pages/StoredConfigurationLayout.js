@@ -19,7 +19,6 @@ const StoredConfigurationLayout = () => {
 
   const [selectedValueIndex, setSelectedValueIndex] = React.useState(-1)
   const [selectedValue, setSelectedValue] = React.useState("");
-  console.log('selected value', selectedValue);
 
   const [addKeyInputValue, setAddKeyInputValue] = React.useState("");
   const [addValueInputValue, setAddValueInputValue] = React.useState("");
@@ -42,7 +41,6 @@ const StoredConfigurationLayout = () => {
     keyHistory
   } = React.useContext(ManagerContext)
 
-  console.log(keyHistory, 'KEY HISTORY IN LAYOUT');
 
   const savedKeys = Object.keys(keyHistory).map((key, index) => {
     return (
@@ -77,8 +75,6 @@ const StoredConfigurationLayout = () => {
           <ListItemText primary={value}/>
           <IconButton edge="end" aria-label="delete">
               <DeleteIcon onClick={(event) => {
-                console.log('Delete clicked, valueIndex: ', valueIndex)
-                console.log('current value: ', value);
                 handlers.deleteStoredKeyHistoryValueHandler(value, selectedKey)
               }}/>
           </IconButton>
@@ -114,7 +110,6 @@ const StoredConfigurationLayout = () => {
     value={addValueInputValue}
     onChange={(event) => {
       const {value} = event.target;
-      console.log('Adding value: ', value);
       setAddValueInputValue(value);
     }}
     InputLabelProps={{

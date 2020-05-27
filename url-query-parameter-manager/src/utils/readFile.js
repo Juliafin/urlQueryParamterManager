@@ -4,9 +4,7 @@ export const readFile = (file) => {
 
   return new Promise((resolve, reject) => {
     reader.onload = function(e) {
-      // that.displayData(e.target.result);
       const data = e.target.result;
-      console.log(data, 'DATA!!');
       resolve(data);
     };
     reader.readAsText(file);

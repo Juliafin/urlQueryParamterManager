@@ -9,14 +9,12 @@ const ImportLayout = () => {
   const { handlers } = React.useContext(ManagerContext);
 
   const importFileHandler = async (event) => {
-    console.log("File loaded", event);
     const file = event.target.files && event.target.files[0];
     const parsedFile = await readFile(file);
 
     try {
       const json = JSON.parse(parsedFile);
       handlers.importKeyHistoryHandler(json);
-      console.log("JSON!", json);
     } catch (err) {
       console.log("err parsing: ", err);
     }
