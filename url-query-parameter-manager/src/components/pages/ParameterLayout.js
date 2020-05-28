@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Button } from "@material-ui/core";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import "./ParameterLayout.css";
 import { ConfigurationInput } from "../ConfigurationInput";
 import { ParamsDisplay } from "../ParamsDisplay";
 import { ManagerContext } from "../../store/URLManagerContext";
+import "./ParameterLayout.css";
 
 
 const ParameterLayout = () => {

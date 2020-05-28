@@ -1,4 +1,5 @@
 {
   "glossary": ["hi", "hello", "howareyou"],
-  "somethingcool": ["icecream", "sushi", "tomatoes"]
+  "somethingcool": ["icecream", "sushi", "tomatoes"],
+  "dsEnv": ["production", "qa", "development", "local-ssl"]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, IconButton } from "@material-ui/core";
+import { Container, IconButton, Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -12,22 +12,35 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
+import Typography from "@material-ui/core/Typography";
 import { ManagerContext } from "../../store/URLManagerContext";
 import "./ConfigurationManagementLayout.css";
+import ConfirmationDialog from '../ConfirmationDialog';
 
 const ConfigurationManagementLayout = () => {
   const { configurations, handlers } = React.useContext(ManagerContext);
 
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
   const [selectedConfiguration, setSelectedConfiguration] = React.useState("");
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleDialogCloseOnCancel = (event) => {
+    setDialogOpen(false);
+  }
+
+  const handleDialogCloseOnConfirm = (event) => {
+    setDialogOpen(false);
+    handlers.deleteAllConfigurations();
+  }
+
+  const handleDialogOpen = (event) => {
+    setDialogOpen(true)
+  }
 
   const handleConfigurationItemClick = (event, index, configuration) => {
     setSelectedConfiguration(configuration);
     setSelectedIndex(index);
   };
-
-  console.log(configurations[selectedConfiguration], "Selected Configuration!");
 
   const configurationList = !Object.keys(configurations).length ? (
     <Container>
@@ -54,8 +67,8 @@ const ConfigurationManagementLayout = () => {
           <ListItemText primary={configuration} />
           <IconButton
             onClick={(event) => {
-                console.log("Selected configuration", selectedConfiguration);
-                // handlers.deleteConfigurationItemHandler(selectedConfiguration);
+                console.log("Selected configuration", configuration);
+                handlers.deleteConfigurationItemHandler(configuration);
               }}
             edge="end"
             aria-label="delete">
@@ -68,8 +81,6 @@ const ConfigurationManagementLayout = () => {
   );
 
   const currentConfiguration = configurations[selectedConfiguration];
-  console.log("configurations!!", configurations);
-  console.log('Current config!!!!!!!!!', currentConfiguration)
   const configurationData = currentConfiguration
     ? currentConfiguration.map(({ key, value }, index) => {
         return (
@@ -83,6 +94,12 @@ const ConfigurationManagementLayout = () => {
 
   return (
     <Container className="configurationManagementContainer">
+      <Typography className="configurationWarning" variant="h6">Be careful! Deleting configuration values is permanent!</Typography>
+      <ConfirmationDialog
+        open={dialogOpen}
+        handleCloseOnCancel={handleDialogCloseOnCancel}
+        handleCloseOnConfirm={handleDialogCloseOnConfirm}
+      />
       <Container className="configurationListContainer">
         <List>{configurationList}</List>
       </Container>
@@ -101,6 +118,14 @@ const ConfigurationManagementLayout = () => {
           <TableBody>{configurationData}</TableBody>
         </Table>
       </TableContainer>
+
+      <Container className="buttonContainer">
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleDialogOpen}
+        >Delete all Configurations</Button>
+      </Container>
     </Container>
   );
 };

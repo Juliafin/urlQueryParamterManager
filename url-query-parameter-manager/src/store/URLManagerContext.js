@@ -210,14 +210,18 @@ export class UrlManagerContextProvider extends React.Component {
     const configurations = cloneDeep(this.state.configurations);
     delete configurations[configurationToDelete];
     await setConfigurations(configurations);
+    this.setState({configurations});
+  }
 
+  deleteAllConfigurations = async() => {
+    await setConfigurations({});
+    this.setState({configurations: {}})
   }
 
   render() {
     const { children } = this.props;
 
     return (
-      
       <ManagerContext.Provider
         value={{
           handlers: {
@@ -226,6 +230,7 @@ export class UrlManagerContextProvider extends React.Component {
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
             deleteConfigurationItemHandler: this.deleteConfigurationItemHandler,
+            deleteAllConfigurations: this.deleteAllConfigurations,
             importKeyHistoryHandler: this.importKeyHistoryHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
             queryFieldOnChangeHandler: this.queryFieldOnChangeHandler,

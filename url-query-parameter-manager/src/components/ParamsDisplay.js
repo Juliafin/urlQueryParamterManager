@@ -11,7 +11,8 @@ export const ParamsDisplay = ({
   keyHistory,
 }) => {
   const queryFieldElements = queryFields.map((field, index) => {
-    const { key, value, id } = field;
+    let { key, value, id } = field;
+    key = decodeURI(key);
     const keyId = `key-${id}`;
     const valueId = `value-${id}`;
     const buttonId = `button-${id}`;

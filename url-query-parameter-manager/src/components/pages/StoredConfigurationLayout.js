@@ -36,7 +36,6 @@ const StoredConfigurationLayout = () => {
   
 
   const {
-    configurations,
     handlers,
     keyHistory
   } = React.useContext(ManagerContext)

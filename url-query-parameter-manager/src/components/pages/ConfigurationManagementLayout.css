@@ -3,7 +3,13 @@
   align-items: center;
   justify-content: center;
   height: 400px;
+}
 
+.configurationManagementContainer > h6.configurationWarning {
+  text-align: center;
+  font-size: 16px;
+  color: #a91010;
+  font-weight: bold;
 }
 
 .configurationListContainer {
@@ -23,4 +29,11 @@ div.configurationListItem {
 
 .configurationTableRow td {
   font-size: 12px;
+}
+
+.configurationManagementContainer div.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
 }
