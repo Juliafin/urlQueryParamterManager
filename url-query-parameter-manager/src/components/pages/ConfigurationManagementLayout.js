@@ -14,8 +14,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
 import { ManagerContext } from "../../store/URLManagerContext";
-import "./ConfigurationManagementLayout.css";
 import ConfirmationDialog from '../ConfirmationDialog';
+import { saveFile } from '../../utils/exportUtil';
+import "./ConfigurationManagementLayout.css";
 
 const ConfigurationManagementLayout = () => {
   const { configurations, handlers } = React.useContext(ManagerContext);
@@ -41,6 +42,13 @@ const ConfigurationManagementLayout = () => {
     setSelectedConfiguration(configuration);
     setSelectedIndex(index);
   };
+
+
+  const handleExport = () => {
+    console.log('CONFIGURATIONS');
+    console.log(configurations);
+    saveFile(configurations), 'configurations.json');
+  }
 
   const configurationList = !Object.keys(configurations).length ? (
     <Container>
@@ -120,6 +128,11 @@ const ConfigurationManagementLayout = () => {
       </TableContainer>
 
       <Container className="buttonContainer">
+      <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleExport}
+        >Export Configurations</Button>
         <Button
           variant="outlined"
           color="secondary"
