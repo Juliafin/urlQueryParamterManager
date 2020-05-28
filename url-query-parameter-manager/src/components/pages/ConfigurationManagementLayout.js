@@ -54,8 +54,8 @@ const ConfigurationManagementLayout = () => {
           <ListItemText primary={configuration} />
           <IconButton
             onClick={(event) => {
-                console.log("Selected configuration", configuration);
-                // handlers.deleteConfigurationItemHandler(configuration);
+                console.log("Selected configuration", selectedConfiguration);
+                // handlers.deleteConfigurationItemHandler(selectedConfiguration);
               }}
             edge="end"
             aria-label="delete">

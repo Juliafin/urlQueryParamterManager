@@ -16,6 +16,15 @@ export const saveConfiguration = async (configurationName, configToSave) => {
 
 }
 
+export const setConfigurations = (configurations) => {
+  return new Promise((resolve, reject) => {
+    window.chrome.storage.sync.set( {configurations} , () => {
+      resolve(configurations);
+    } )
+  });
+}
+
+
 export const getConfiguration = () => {
   return new Promise((resolve, reject) => {
   window.chrome.storage.sync.get(["configurations"], (configs) => {

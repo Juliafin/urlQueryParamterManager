@@ -5,6 +5,7 @@ import { createQueryString } from "../utils/createQueryString";
 import {
   getConfiguration,
   saveConfiguration,
+  setConfigurations,
   getKeyHistory,
   saveKeyHistory,
   setKeyHistory,
@@ -205,6 +206,13 @@ export class UrlManagerContextProvider extends React.Component {
 
   } 
 
+  deleteConfigurationItemHandler = async(configurationToDelete) => {
+    const configurations = cloneDeep(this.state.configurations);
+    delete configurations[configurationToDelete];
+    await setConfigurations(configurations);
+
+  }
+
   render() {
     const { children } = this.props;
 
@@ -217,6 +225,7 @@ export class UrlManagerContextProvider extends React.Component {
             addNewValueToHistoryKey: this.addNewValueToHistoryKey,
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
+            deleteConfigurationItemHandler: this.deleteConfigurationItemHandler,
             importKeyHistoryHandler: this.importKeyHistoryHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
             queryFieldOnChangeHandler: this.queryFieldOnChangeHandler,
