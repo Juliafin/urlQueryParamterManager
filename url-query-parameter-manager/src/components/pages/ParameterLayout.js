@@ -24,8 +24,10 @@ const ParameterLayout = () => {
   return (
     <div className="configurationLayout">
       <h1>Url Query Parameter Manager</h1>
-      <p>Current url: {url}</p>
-      <p>New url: {newUrl}</p>
+      <Container className="urlContainer">
+        <p><span>Current url:</span> {encodeURI(url)}</p>
+        <p><span>New url:</span> {encodeURI(newUrl)}</p>
+      </Container>
       <ConfigurationInput
         configurationChangeHandler={handlers.onConfigurationChangeHandler}
         configurationOptions={Object.keys(configurations)}

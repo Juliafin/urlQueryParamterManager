@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+div.urlContainer {
+  word-wrap: break-word;
+}
+
+div.urlContainer p {
+  font-size: 12px;
+}
+
+div.urlContainer span {
+  font-weight: bold;
+}
+
 .addircle {
   font-size: 36px !important;
   margin-left: 16px;
