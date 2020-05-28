@@ -1,0 +1,18 @@
+p, ul, li, pre {
+    font-size: 14px;
+}
+
+div.importMessageContainer, div.importInputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.successMessage {
+    color: greenyellow;
+}
+
+.failureMessage {
+    color: #a91010;
+}
