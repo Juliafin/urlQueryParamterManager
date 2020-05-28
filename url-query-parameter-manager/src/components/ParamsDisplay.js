@@ -36,7 +36,7 @@ export const ParamsDisplay = ({
             <TextField
               {...props}
               onChange={queryFieldOnChangeHandler}
-              label={key}
+              label={`key ${index + 1}`}
               className="key"
               name={keyId}
               id={keyId}
@@ -61,7 +61,7 @@ export const ParamsDisplay = ({
             <TextField
               {...props}
               onChange={queryFieldOnChangeHandler}
-              label={value}
+              label={`value ${index + 1}`}
               className="key"
               name={valueId}
               id={valueId}

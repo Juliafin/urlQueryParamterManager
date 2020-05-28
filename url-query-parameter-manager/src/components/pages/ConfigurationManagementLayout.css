@@ -1,0 +1,26 @@
+.configurationManagementContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+
+}
+
+.configurationListContainer {
+  height: 150px;
+  overflow-y: scroll;
+  margin: 1rem 0;
+}
+
+div.configurationListItem {
+  text-align: center;
+}
+
+.configurationDisplayContainer {
+  height: 190px;
+  overflow-y: scroll;
+}
+
+.configurationTableRow td {
+  font-size: 12px;
+}

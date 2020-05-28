@@ -50,7 +50,10 @@ const StoredConfigurationLayout = () => {
           button
           selected={selectedIndex === index}
           onClick={(event) => handleListKeyItemClick(event, index, key)}
-          className="" dense id={index} key={index}>
+          className=""
+          dense
+          id={index}
+          key={index}>
           <ListItemText primary={key}/>
           <IconButton edge="end" aria-label="delete">
               <DeleteIcon onClick={(event) => {
@@ -75,10 +78,14 @@ const StoredConfigurationLayout = () => {
           onClick={(event) => handleListValueItemClick(event, valueIndex, value)}
           className="" dense id={valueIndex} key={valueIndex}>
           <ListItemText primary={value}/>
-          <IconButton edge="end" aria-label="delete">
-              <DeleteIcon onClick={(event) => {
-                handlers.deleteStoredKeyHistoryValueHandler(value, selectedKey)
-              }}/>
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={(event) => {
+              handlers.deleteStoredKeyHistoryValueHandler(value, selectedKey)
+            }}
+            >
+              <DeleteIcon/>
           </IconButton>
         </ListItem>
         <Divider/>
