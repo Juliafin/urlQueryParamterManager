@@ -45,7 +45,7 @@ const ConfigurationManagementLayout = () => {
 
 
   const handleExport = () => {
-    console.log('CONFIGURATIONS');
+    console.log('Exporting configurations');
     console.log(configurations);
     saveFile(configurations, 'configurations.json');
   }
@@ -107,6 +107,7 @@ const ConfigurationManagementLayout = () => {
         open={dialogOpen}
         handleCloseOnCancel={handleDialogCloseOnCancel}
         handleCloseOnConfirm={handleDialogCloseOnConfirm}
+        itemNames="Configurations"
       />
       <Container className="configurationListContainer">
         <List>{configurationList}</List>

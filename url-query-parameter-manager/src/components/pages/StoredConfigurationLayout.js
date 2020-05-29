@@ -1,5 +1,4 @@
 import React from 'react';
-import { ManagerContext } from '../../store/URLManagerContext';
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
@@ -11,9 +10,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { IconButton } from '@material-ui/core';
+import { ManagerContext } from '../../store/URLManagerContext';
+import ConfirmationDialog from '../ConfirmationDialog';
+import { saveFile } from '../../utils/exportUtil';
 import "./storedConfigurationLayout.css";
 
 const StoredConfigurationLayout = () => {
+
+  const {
+    handlers,
+    keyHistory
+  } = React.useContext(ManagerContext)
 
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
   const [selectedKey, setSelectedKey] = React.useState("");
@@ -24,6 +31,20 @@ const StoredConfigurationLayout = () => {
   const [addKeyInputValue, setAddKeyInputValue] = React.useState("");
   const [addValueInputValue, setAddValueInputValue] = React.useState("");
 
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleDialogCloseOnCancel = (event) => {
+    setDialogOpen(false);
+  }
+
+  const handleDialogCloseOnConfirm = (event) => {
+    setDialogOpen(false);
+    handlers.deleteAllKeyHistoryHandler();
+  }
+
+  const handleDialogOpen = (event) => {
+    setDialogOpen(true)
+  }
 
   const handleListKeyItemClick = (event, index, key) => {
     setSelectedIndex(index);
@@ -34,13 +55,12 @@ const StoredConfigurationLayout = () => {
     setSelectedValueIndex(index);
     setSelectedValue(value);
   }
-  
 
-  const {
-    handlers,
-    keyHistory
-  } = React.useContext(ManagerContext)
-
+  const handleExport = () => {
+    console.log('Exporting key history');
+    console.log(keyHistory);
+    saveFile(keyHistory, 'keyHistory.json');
+  }
 
   const savedKeys = Object.keys(keyHistory).map((key, index) => {
     return (
@@ -128,6 +148,12 @@ const StoredConfigurationLayout = () => {
 
   return (
     <Container className="keyHistoryContainer">
+      <ConfirmationDialog
+        open={dialogOpen}
+        handleCloseOnCancel={handleDialogCloseOnCancel}
+        handleCloseOnConfirm={handleDialogCloseOnConfirm}
+        itemNames={`Keys & Values`}
+      />
       <Typography className="storedKeysHeader" variant="h6" >Stored Keys</Typography>
       <List dense="true" component="div" className="savedKeyList">
 
@@ -170,12 +196,12 @@ const StoredConfigurationLayout = () => {
       <Button
           variant="outlined"
           color="primary"
-          onClick={() => {}}
+          onClick={handleExport}
         >Export Keys {'&'} Values</Button>
         <Button
           variant="outlined"
           color="secondary"
-          onClick={() => {}}
+          onClick={handleDialogOpen}
         >Delete all Keys {'&'} Values</Button>
       </Container>
     </Container>

@@ -9,15 +9,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const ConfirmationDialog = (props) => {
 
-  const {open, handleCloseOnCancel, handleCloseOnConfirm } = props;
+  const {open, handleCloseOnCancel, handleCloseOnConfirm, itemNames } = props;
 
   return (
     <div>
       <Dialog open={open} onClose={handleCloseOnCancel} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Delete Configurations</DialogTitle>
+        <DialogTitle id="form-dialog-title">Delete {itemNames}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to proceed? Clicking OK will permanently delete all configurations!
+            Are you sure you want to proceed? Clicking OK will permanently delete all {itemNames.toLowerCase()}!
           </DialogContentText>
         </DialogContent>
         <DialogActions>

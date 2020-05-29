@@ -34,6 +34,12 @@ div.MuiListItem-button {
   height: 1.7rem;
 }
 
+div.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 .listItem {

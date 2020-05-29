@@ -140,6 +140,11 @@ export class UrlManagerContextProvider extends React.Component {
     await saveKeyHistory(keyHistory);
   }
 
+  deleteAllKeyHistoryHandler = async () => {
+    this.setState({keyHistory: {}});
+    await saveKeyHistory({})
+  }
+
   deleteStoredKeyHistoryValueHandler = async (valuetoDelete, key) => {
     const keyHistory = cloneDeep(this.state.keyHistory);
     const valueIndex = keyHistory[key] && keyHistory[key].indexOf(valuetoDelete);
@@ -254,6 +259,7 @@ export class UrlManagerContextProvider extends React.Component {
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
             deleteConfigurationItemHandler: this.deleteConfigurationItemHandler,
+            deleteAllKeyHistoryHandler: this.deleteAllKeyHistoryHandler,
             deleteAllConfigurations: this.deleteAllConfigurations,
             importKeyHistoryHandler: this.importKeyHistoryHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
