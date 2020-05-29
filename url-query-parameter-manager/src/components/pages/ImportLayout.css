@@ -1,6 +1,24 @@
-p, ul, li, pre {
+
+div.importContainer {
+    overflow-y: auto;
+    height: 450px
+}
+
+div.importContainer p {
+    margin: 0 2rem;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.importContainer p, ul, li, pre {
+    font-size: 12px;
+}
+
+.importContainer h6 {
     font-size: 16px;
 }
+
 
 div.importMessageContainer, div.importInputContainer {
     display: flex;

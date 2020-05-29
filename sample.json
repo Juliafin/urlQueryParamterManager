@@ -1,5 +1,5 @@
 {
-  "glossary": ["hi", "hello", "howareyou"],
-  "somethingcool": ["icecream", "sushi", "tomatoes"],
+  "artists": ["vangogh", "picasso", "chagall"],
+  "food": ["icecream", "sushi", "tomatoes"],
   "dsEnv": ["production", "qa", "development", "local-ssl"]
 }

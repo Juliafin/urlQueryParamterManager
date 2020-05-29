@@ -1,0 +1,60 @@
+{
+  "Addsomething": [
+    {
+      "id": 1,
+      "key": "v",
+      "value": "AqcyRxZJCXc"
+    },
+    {
+      "id": 2,
+      "key": "hereissomethingcool",
+      "value": "key"
+    }
+  ],
+  "Test Configuration2": [
+    {
+      "id": 1,
+      "key": "v",
+      "value": "AqcyRxZJCXc"
+    },
+    {
+      "id": 2,
+      "key": "hereissomethingcool",
+      "value": "key"
+    },
+    {
+      "id": 3,
+      "key": "namewr9081asdlfkj",
+      "value": "130948324"
+    }
+  ],
+  "newduckduckgoconfig": [
+    {
+      "id": 1,
+      "key": "q",
+      "value": "tesla"
+    },
+    {
+      "id": 2,
+      "key": "ia",
+      "value": "web"
+    },
+    {
+      "id": 3,
+      "key": "apple",
+      "value": "green"
+    }
+  ],
+  "foods": [
+    {
+      "id": 1,
+      "key": "vegetables",
+      "value": "tomatoes"
+    },
+    {
+      "id": 2,
+      "key": "fruits",
+      "value": "apples"
+    }
+  ]
+}

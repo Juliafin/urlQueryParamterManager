@@ -1,6 +1,7 @@
 import React from 'react';
 import { ManagerContext } from '../../store/URLManagerContext';
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import { Button } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -165,8 +166,18 @@ const StoredConfigurationLayout = () => {
       </Container>
         {storedValues}
       </List>
-
-
+      <Container className="buttonContainer">
+      <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => {}}
+        >Export Keys {'&'} Values</Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => {}}
+        >Delete all Keys {'&'} Values</Button>
+      </Container>
     </Container>
   )
 

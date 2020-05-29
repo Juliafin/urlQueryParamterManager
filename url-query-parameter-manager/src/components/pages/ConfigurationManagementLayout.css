@@ -37,3 +37,9 @@ div.configurationListItem {
   justify-content: center;
   margin: 5px;
 }
+
+.buttonContainer button {
+  height: 45px;
+  width: 147px;
+  margin: 10px;
+}

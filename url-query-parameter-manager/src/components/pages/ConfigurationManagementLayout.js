@@ -47,7 +47,7 @@ const ConfigurationManagementLayout = () => {
   const handleExport = () => {
     console.log('CONFIGURATIONS');
     console.log(configurations);
-    saveFile(configurations), 'configurations.json');
+    saveFile(configurations, 'configurations.json');
   }
 
   const configurationList = !Object.keys(configurations).length ? (

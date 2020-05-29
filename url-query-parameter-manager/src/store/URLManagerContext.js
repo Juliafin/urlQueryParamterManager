@@ -159,7 +159,7 @@ export class UrlManagerContextProvider extends React.Component {
       const values = importedJson[key];
       // Validate that the key refers to an array
       if (!Array.isArray(values)) {
-        throw new Error('Imported JSON is formatted improperly')
+        throw new Error('Imported JSON is formatted improperly. The key must refer to an array of strings.')
       }
 
       // Validate the all values in the array are strings for consistency
@@ -169,7 +169,7 @@ export class UrlManagerContextProvider extends React.Component {
 
 
       if (!areAllValuesStrings) {
-        throw new Error('Imported JSON is formatted improperly')
+        throw new Error('Imported JSON is formatted improperly. All keys are not strings.')
       }
 
       // If the key does not exist, simply write the array into the keyHistory otherwise loop through and check if each value already exists
@@ -204,7 +204,30 @@ export class UrlManagerContextProvider extends React.Component {
     this.setState({keyHistory});
     await saveKeyHistory(keyHistory);
 
-  } 
+  }
+  
+  addConfigurationsHandler = async(configurationsToAdd) => {
+    const configurations = cloneDeep(this.state.configurations);
+
+    Object.keys(configurationsToAdd).forEach((config) => {
+
+      configurationsToAdd[config].forEach((configFields) => {
+
+      // Check if an id key and value exist!
+
+        const {id, key, value} = configFields;
+        if (!id || !key || !value || !typeof id === 'number' || !typeof key === 'string' || !typeof value === 'string') {
+          console.log('Error processing json');
+          throw new Error('Configurations are improperly formatted and must include an id, key and value with the correct types');
+        }
+      })
+
+      configurations[config] = configurationsToAdd[config];
+    })
+
+    await setConfigurations(configurations);
+    this.setState({configurations});
+  }
 
   deleteConfigurationItemHandler = async(configurationToDelete) => {
     const configurations = cloneDeep(this.state.configurations);
@@ -227,6 +250,7 @@ export class UrlManagerContextProvider extends React.Component {
           handlers: {
             addNewKeyHistoryKey: this.addNewKeyHistoryKey,
             addNewValueToHistoryKey: this.addNewValueToHistoryKey,
+            addConfigurationsHandler: this.addConfigurationsHandler,
             deleteStoredKeyHistoryHandler: this.deleteStoredKeyHistoryHandler,
             deleteStoredKeyHistoryValueHandler: this.deleteStoredKeyHistoryValueHandler,
             deleteConfigurationItemHandler: this.deleteConfigurationItemHandler,
