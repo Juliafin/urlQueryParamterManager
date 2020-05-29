@@ -102,7 +102,7 @@ const ConfigurationManagementLayout = () => {
 
   return (
     <Container className="configurationManagementContainer">
-      <Typography className="configurationWarning" variant="h6">Be careful! Deleting configuration values is permanent!</Typography>
+      <Typography className="configurationWarning" variant="h6">Be careful! Deleting configurations is permanent!</Typography>
       <ConfirmationDialog
         open={dialogOpen}
         handleCloseOnCancel={handleDialogCloseOnCancel}
