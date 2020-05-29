@@ -37,8 +37,11 @@ chrome.webNavigation.onCompleted.addListener((tab) => {
     chrome.webNavigation.getFrame({frameId: 0, tabId: tab.tabId}, (details) => {
       console.log('navigation completed to new page')
       console.log('Details: ', details);
-      console.log('Url', details.url);
-      storeCurrentUrl(details.url, tab.tabId);
+      if (details) {
+        console.log('Url', details.url);
+        storeCurrentUrl(details.url, tab.tabId);
+      }
+      
     })
   }
 })

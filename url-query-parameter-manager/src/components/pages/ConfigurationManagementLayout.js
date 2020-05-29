@@ -50,7 +50,7 @@ const ConfigurationManagementLayout = () => {
     saveFile(configurations, 'configurations.json');
   }
 
-  const configurationList = !Object.keys(configurations).length ? (
+  const configurationList = !configurations || !Object.keys(configurations).length ? (
     <Container>
       <p>
         No configurations added yet. Please add one under the{" "}

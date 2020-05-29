@@ -10,6 +10,7 @@ export const ParamsDisplay = ({
   queryFields,
   keyHistory,
 }) => {
+  console.log(queryFields, 'query fields');
   const queryFieldElements = queryFields.map((field, index) => {
     let { key, value, id } = field;
     key = decodeURI(key);
@@ -32,7 +33,7 @@ export const ParamsDisplay = ({
               keyValue
             );
           }}
-          inputValue={key}
+          inputValue={key || ''}
           renderInput={(props) => (
             <TextField
               {...props}
@@ -57,7 +58,7 @@ export const ParamsDisplay = ({
               keyValue
             );
           }}
-          inputValue={value}
+          inputValue={value || ''}
           renderInput={(props) => (
             <TextField
               {...props}

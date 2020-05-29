@@ -63,7 +63,7 @@ export class UrlManagerContextProvider extends React.Component {
   queryFieldOnChangeHandler = (event, fieldValue) => {
     const { id, value } = event.target;
     let newQueryFields = cloneDeep(this.state.queryFields);
-    const idArray = id.split("-");
+    const idArray = id && id.split("-");
     const index = parseInt(idArray[idArray.length - 1], 10) - 1;
     if (id.startsWith("key")) {
       newQueryFields[index].key = value;
