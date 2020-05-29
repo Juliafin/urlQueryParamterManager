@@ -48,16 +48,28 @@ const ParameterLayout = () => {
       <Container className="configurationButtonContainer">
         <Button
           className="configurationButton"
-          onClick={handlers.setUrlHandler}
+          onClick={(event) => {
+            handlers.setUrlHandler(event, newUrl)}}
           variant="outlined"
+          color="primary"
         >
           Set Url
+        </Button>
+        <Button
+          className="configurationButton"
+          onClick={(event) => {
+            handlers.setUrlHandler(event, url)}}
+          variant="outlined"
+          color="primary"
+        >
+          Revert Url
         </Button>
         <Button
           className="configurationButton"
           onClick={handlers.saveConfigurationHandler}
           disabled={isConfigurationButtonDisabled}
           variant="outlined"
+          color="primary"
         >
           Save Configuration
         </Button>

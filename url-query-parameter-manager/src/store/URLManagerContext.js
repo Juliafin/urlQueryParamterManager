@@ -83,10 +83,9 @@ export class UrlManagerContextProvider extends React.Component {
     this.setState({newUrl})
   }
 
-  setUrlHandler = (event) => {
-    const queryString = createQueryString(this.state.queryFields);
-    const url = this.state.url.replace(/(.*)(\?.*)/, "$1");
-    setUrl(queryString, url);
+  setUrlHandler = (event, url) => {
+    console.log('NEW URL', encodeURI(this.state.newUrl));
+    setUrl(encodeURI(url));
   };
 
   queryFieldOnAddHandler = (event) => {
