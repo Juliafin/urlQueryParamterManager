@@ -45,7 +45,7 @@ const ImportLayout = () => {
 
       <Container className="importInputContainer">
         <p>Key and Value import: </p>
-        <input className="fileInput" accept=".json" type="file" onChange={(event) => {
+        <input className="fileInput MuiButtonBase-root MuiButton-root MuiButton-outlined" accept=".json" type="file" onChange={(event) => {
           importFileHandler(event, handlers.importKeyHistoryHandler)
         }} />
       </Container>
@@ -53,7 +53,7 @@ const ImportLayout = () => {
         <Container className="importInputContainer">
           
         <p>Parameter Group Configuration import: </p>
-        <input className="fileInput" accept=".json" type="file" onChange={(event) => {
+        <input className="fileInput groupImport MuiButtonBase-root MuiButton-root MuiButton-outlined" accept=".json" type="file" onChange={(event) => {
           importFileHandler(event, handlers.addConfigurationsHandler)
         }} />
 
@@ -71,7 +71,7 @@ const ImportLayout = () => {
         <li>Use the correct import button for the JSON format you are importing</li>
         <li>The json must be properly formatted in one of the following forms: </li>
         <h6>Key and value configuration: </h6>
-        <p>This JSON will add suggested key and value pairs. It may contain any number of keys.</p>
+        <p>This JSON will add suggested key and value pairs. It may contain any number of keys. If a key exists, the values will be added to that key.</p>
         <pre>{`
     {
       "key1": ["value1", "value2"...],
@@ -81,7 +81,7 @@ const ImportLayout = () => {
         </pre>
         
         <h6>Parameter Group Configurations</h6>
-        <p>This JSON will add a new configuration(s) containing sets of key and value pairs. The JSON may contain any number of configurations in this format.</p>
+        <p>This JSON will add a new configuration(s) containing sets of key and value pairs. The JSON may contain any number of configurations in this format. Existing configurations of a given name will be overwritten.</p>
         <pre>{`"NameOfConfiguration": [
     {
       "id": 1,

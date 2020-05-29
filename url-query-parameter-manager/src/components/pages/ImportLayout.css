@@ -8,8 +8,16 @@ div.importContainer p {
     margin: 0 2rem;
     font-size: 14px;
     font-weight: bold;
+    position: relative;
+    display: inline-block;
+    left: -50px;
 }
 
+input.groupImport {
+    position: relative;
+    left: 0px;
+    width: 536px;
+}
 
 .importContainer p, ul, li, pre {
     font-size: 12px;
