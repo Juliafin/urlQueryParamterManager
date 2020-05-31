@@ -25,3 +25,4 @@ node_modules
 dist/
 extensionDist.crx
 extensionDist.pem
+urlQueryParameterManager.zip
