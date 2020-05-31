@@ -88,7 +88,7 @@ To delete all stored configurations, click the `Delete All Configurations` butto
 
 ### About me:
 
-Hello! My name is Julia Finarovsky. I am a classically trained concert pianist and Software Engineer working at an awesome company in full stack development. 
+Hello! My name is Julia Finarovsky. I am a classically trained concert pianist and software engineer working at an awesome company in full stack development. 
 
 
 Disclaimer: This app is open source and maintained by me. While it is freeware, donations are appreciated! Paypal may be sent to juliafinarovsky@gmail.com
