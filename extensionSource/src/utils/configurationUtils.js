@@ -44,7 +44,11 @@ export const getKeyHistory = () => {
 
 export const setKeyHistory = async (currentConfig) => {
 
-  const {keyHistory: storedKeyHistory} = await getKeyHistory();
+  let {keyHistory: storedKeyHistory} = await getKeyHistory();
+
+  if (!storedKeyHistory) {
+    storedKeyHistory = {}
+  }
 
   currentConfig.forEach(({key, value}) => {
     if (!storedKeyHistory[key]) {

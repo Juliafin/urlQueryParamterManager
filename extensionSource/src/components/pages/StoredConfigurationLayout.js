@@ -71,9 +71,9 @@ const StoredConfigurationLayout = () => {
           selected={selectedIndex === index}
           onClick={(event) => handleListKeyItemClick(event, index, key)}
           className=""
-          dense
+          dense={true}
           id={index}
-          key={index}>
+        >
           <ListItemText primary={key}/>
           <IconButton edge="end" aria-label="delete">
               <DeleteIcon onClick={(event) => {
@@ -96,7 +96,8 @@ const StoredConfigurationLayout = () => {
           button
           selected={selectedValueIndex === valueIndex}
           onClick={(event) => handleListValueItemClick(event, valueIndex, value)}
-          className="" dense id={valueIndex} key={valueIndex}>
+          className="valueListItems" dense={true} id={valueIndex}
+        >
           <ListItemText primary={value}/>
           <IconButton
             edge="end"
@@ -155,7 +156,7 @@ const StoredConfigurationLayout = () => {
         itemNames={`Keys & Values`}
       />
       <Typography className="storedKeysHeader" variant="h6" >Stored Keys</Typography>
-      <List dense="true" component="div" className="savedKeyList">
+      <List dense={true} component="div" className="savedKeyList">
 
       <Container className="addAKeyContainer">
         {addAKeyField}
@@ -174,7 +175,11 @@ const StoredConfigurationLayout = () => {
         {savedKeys}
       </List>
       <Typography className="storedValuesHeader" variant="h6" >Stored Values</Typography>
-      <List dense="true" component="div" className="savedKeyList">
+      <List
+        dense={true}
+        component="div"
+        className="savedKeyList"
+      >
       <Container className="addAKeyContainer">
         {addAValueField}
         <IconButton

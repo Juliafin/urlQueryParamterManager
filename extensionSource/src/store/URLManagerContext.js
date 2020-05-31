@@ -124,11 +124,13 @@ export class UrlManagerContextProvider extends React.Component {
       this.state.currentConfiguration,
       this.state.queryFields
     );
+    console.log('current state', this.state);
     console.log('Current configuration in handler', this.state.currentConfiguration);
     console.log('queryFields to save in handler: ', this.state.queryFields);
     console.log('Configurations in configuration handler', configurations);
 
-    const keys = await setKeyHistory(this.state.queryFields);
+    const keys = await setKeyHistory(this.state.queryFields)
+    console.log('keys in configuration handler', keys );
     this.setState({ configurations, keyHistory: keys }, () => {});
   };
 
