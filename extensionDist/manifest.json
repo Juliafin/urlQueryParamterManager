@@ -1,7 +1,7 @@
 {
   "name": "Query Parameter Manager",
   "version": "1.0",
-  "description": "A manager for url query parameters",
+  "description": "A Manager development tool for changing, manipulating, and storing url query parameters",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"],
@@ -16,6 +16,14 @@
   "page_action": {
     "default_popup": "/build/index.html"
   },
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Ctrl+Shift+L"
+      }
+    }
+  },
   "permissions": [
     "declarativeContent",
     "storage",
@@ -24,5 +32,7 @@
     "activeTab",
   "http://*/*",
   "https://*/*"
-  ]
+  ],
+  "author": "Julia Finarovsky",
+  "homepage_url": "https://github.com/Juliafin/urlQueryParamterManager"
 }

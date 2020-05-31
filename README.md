@@ -92,3 +92,7 @@ Hello! My name is Julia Finarovsky. I am a classically trained concert pianist a
 
 
 Disclaimer: This app is open source and maintained by me. While it is freeware, donations are appreciated! Paypal may be sent to juliafinarovsky@gmail.com
+
+If you would like to contribute or make feature requests, please visit: https://github.com/Juliafin/urlQueryParamterManager
+
+Please leave a review in the chrome extension store if you can and star the repo!
