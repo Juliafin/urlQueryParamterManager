@@ -85,3 +85,8 @@ To delete all stored configurations, click the `Delete All Configurations` butto
 - React Router
 - Filesaver.js
 
+
+### About me:
+
+Hello! My name is Julia Finarovsky. I am a classically trained concert pianist and Software Engineer working at an awesome company in full stack development. 
+
