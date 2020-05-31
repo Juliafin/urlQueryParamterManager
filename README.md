@@ -85,6 +85,14 @@ To delete all stored configurations, click the `Delete All Configurations` butto
 - React Router
 - Filesaver.js
 
+### Running locally
+
+1. Clone this repo
+2. Run `npm run build` in your terminal of choice
+3. Go to the chrome extensions page chrome://extensions
+4. Enable the toggle for developer mode
+5. Click `loaded unpacked` and select the `extensionDist` folder
+
 
 ### About me:
 
