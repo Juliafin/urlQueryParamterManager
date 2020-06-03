@@ -75,6 +75,15 @@ const ParameterLayout = () => {
         >
           Save Configuration
         </Button>
+        <Button
+          className="configurationButton"
+          onClick={(event) => {
+            handlers.goToUrlHandler(event, newUrl)}}
+          variant="outlined"
+          color="primary"
+        >
+          Go
+        </Button>
       </Container>
     </div>
   );

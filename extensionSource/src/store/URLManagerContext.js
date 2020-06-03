@@ -88,6 +88,12 @@ export class UrlManagerContextProvider extends React.Component {
     setUrl(encodeURI(url));
   };
 
+  goToUrlHandler = (event, url) => {
+    window.chrome.tabs.update(this.state.tabId, {
+      url: this.state.newUrl
+    })
+  }
+
   queryFieldOnAddHandler = (event) => {
     let fieldsToAdd = [];
     if (!this.state.queryFields || !this.state.queryFields.length) {
@@ -262,6 +268,7 @@ export class UrlManagerContextProvider extends React.Component {
             deleteConfigurationItemHandler: this.deleteConfigurationItemHandler,
             deleteAllKeyHistoryHandler: this.deleteAllKeyHistoryHandler,
             deleteAllConfigurations: this.deleteAllConfigurations,
+            goToUrlHandler: this.goToUrlHandler,
             importKeyHistoryHandler: this.importKeyHistoryHandler,
             queryFieldOnDeleteHandler: this.queryFieldOnDeleteHandler,
             queryFieldOnChangeHandler: this.queryFieldOnChangeHandler,
