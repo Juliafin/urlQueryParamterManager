@@ -2,6 +2,7 @@ import React from "react";
 import { TextField, Container, Grid } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import RemoveCircleRoundedIcon from "@material-ui/icons/RemoveCircleRounded";
+import { IconButton } from '@material-ui/core';
 import "./ParamsDisplay.css";
 
 export const ParamsDisplay = ({
@@ -12,6 +13,9 @@ export const ParamsDisplay = ({
 }) => {
   console.log(queryFields, 'query fields');
   const queryFieldElements = queryFields.map((field, index) => {
+
+    let autoFocus = index ? true : false;
+
     let { key, value, id } = field;
     key = decodeURI(key);
     const keyId = `key-${id}`;
@@ -24,6 +28,7 @@ export const ParamsDisplay = ({
     return (
       <div key={index} className="flex">
         <Autocomplete
+          className="paramFieldContainer"
           id={autoCompleteID}
           freeSolo
           options={Object.keys(keyHistory)}
@@ -37,7 +42,11 @@ export const ParamsDisplay = ({
           renderInput={(props) => (
             <TextField
               {...props}
+              autoFocus={autoFocus}
               onChange={queryFieldOnChangeHandler}
+              InputLabelProps={{
+                shrink: true,
+              }}
               label={`key ${index + 1}`}
               className="key"
               name={keyId}
@@ -49,6 +58,7 @@ export const ParamsDisplay = ({
           )}
         />
         <Autocomplete
+          className="valueFieldContainer"
           id={autoCompleteValueID}
           freeSolo
           options={keyHistory[key] || []}
@@ -63,6 +73,9 @@ export const ParamsDisplay = ({
             <TextField
               {...props}
               onChange={queryFieldOnChangeHandler}
+              InputLabelProps={{
+                shrink: true,
+              }}
               label={`value ${index + 1}`}
               className="key"
               name={valueId}
@@ -74,7 +87,9 @@ export const ParamsDisplay = ({
           )}
         />
         <div className="flex" onClick={queryFieldOnDeleteHandler} id={buttonId}>
+        <IconButton edge="end" aria-label="removeParam">
           <RemoveCircleRoundedIcon className="icon removeCircle" />
+        </IconButton>
         </div>
       </div>
     );

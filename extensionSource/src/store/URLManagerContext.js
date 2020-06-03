@@ -14,7 +14,7 @@ import cloneDeep from "lodash.clonedeep";
 
 export const ManagerContext = React.createContext();
 
-const defaultFields = { key: "name", value: "value", id: 1 };
+const defaultFields = { key: "", value: "", id: 1 };
 
 export class UrlManagerContextProvider extends React.Component {
   constructor(props) {
@@ -96,7 +96,7 @@ export class UrlManagerContextProvider extends React.Component {
       const lastIndex = this.state.queryFields.length - 1;
       fieldsToAdd = [
         ...cloneDeep(this.state.queryFields),
-        { ...defaultFields, ...{ id: this.state.queryFields[lastIndex].id } },
+        { key:"", value: "", ...{ id: this.state.queryFields[lastIndex].id } },
       ];
     }
     fieldsToAdd = fieldsToAdd.map((field, index) => {

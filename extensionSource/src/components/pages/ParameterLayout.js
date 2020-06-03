@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button } from "@material-ui/core";
+import { Container, Button, IconButton } from "@material-ui/core";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { ConfigurationInput } from "../ConfigurationInput";
 import { ParamsDisplay } from "../ParamsDisplay";
@@ -42,7 +42,9 @@ const ParameterLayout = () => {
         className="flex addContainer"
         onClick={handlers.queryFieldOnAddHandler}
       >
-        <AddCircleOutlineRoundedIcon className="icon addCircle" />
+        <IconButton edge="end" aria-label="addParam">
+          <AddCircleOutlineRoundedIcon className="icon addCircle" />
+        </IconButton>
       </Container>
 
       <Container className="configurationButtonContainer">

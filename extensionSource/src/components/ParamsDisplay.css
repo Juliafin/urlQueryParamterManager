@@ -29,3 +29,7 @@ label + div.MuiInput-formControl {
 .MuiAutocomplete-inputRoot input.MuiAutocomplete-input {
   width: auto;
 }
+
+div.configurationLayout div.paramFieldContainer div.MuiAutocomplete-inputRoot, div.configurationLayout div.valueFieldContainer div.MuiAutocomplete-inputRoot {
+  padding-right: 25px;
+}
