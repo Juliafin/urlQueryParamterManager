@@ -2,8 +2,28 @@ export const createQueryString = (queryFields) => {
   if (!queryFields || !queryFields.length) {
     return ''
   }
-  return `?${queryFields.map((field, index) => {
-    let separator = index === queryFields.length - 1 ? '' :'&'; 
-    return `${field.key}=${encodeURI(field.value)}${separator}`
-  }).join("")}`;
+  console.log(queryFields, 'Query fields!');
+
+
+  const queryFieldsObj = queryFields.reduce((accum, {key, value}) => {
+    if (accum[key]) {
+      accum[key] = `${accum[key]},${value}`;
+    } else {
+      accum[key] = value;
+    }
+    return accum;
+  }, {})
+
+  console.log('Query fields obj', queryFieldsObj);
+
+  const queryString = Object
+    .entries(queryFieldsObj)
+    .map(([key, value], index, arr) => {
+      const separator = index === arr.length - 1 ? '' : '&';
+      return `${key}=${encodeURI(value)}${separator}`;
+    })
+    .join("")
+
+    return `?${queryString}`
+
 }

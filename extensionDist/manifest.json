@@ -1,6 +1,6 @@
 {
   "name": "Query Parameter Manager",
-  "version": "1.1",
+  "version": "1.2",
   "description": "A Manager development tool for changing, manipulating, and storing url query parameters",
   "manifest_version": 2,
   "background": {

@@ -92,6 +92,7 @@ export class UrlManagerContextProvider extends React.Component {
     window.chrome.tabs.update(this.state.tabId, {
       url: this.state.newUrl
     })
+    window.close();
   }
 
   queryFieldOnAddHandler = (event) => {
