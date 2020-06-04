@@ -38,3 +38,20 @@ div.urlContainer span {
 .configurationButtonContainer > .configurationButton {
   margin: 4px 10px;
 }
+
+div.configurationLayout div.configurationButtonContainer {
+  width: 116%;
+  margin-bottom: 14px;
+  position: relative;
+  right: 8%;
+}
+
+div.configurationLayout > div.addContainer {
+  margin: 0;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+}
