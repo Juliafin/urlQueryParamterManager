@@ -2,8 +2,6 @@ export const createQueryString = (queryFields) => {
   if (!queryFields || !queryFields.length) {
     return ''
   }
-  console.log(queryFields, 'Query fields!');
-
 
   const queryFieldsObj = queryFields.reduce((accum, {key, value}) => {
     if (accum[key]) {
@@ -13,8 +11,6 @@ export const createQueryString = (queryFields) => {
     }
     return accum;
   }, {})
-
-  console.log('Query fields obj', queryFieldsObj);
 
   const queryString = Object
     .entries(queryFieldsObj)

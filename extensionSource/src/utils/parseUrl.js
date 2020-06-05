@@ -15,7 +15,6 @@ export const parseUrlParams = (url) => {
 export const getCurrentUrl = () => {
   return new Promise((resolve, reject) => {
     window.chrome.storage.sync.get(["currentUrl", "tabId"], (result) => {
-      console.log('THE STORED KEY', result);
       if (result) {
         resolve({currentUrl: result.currentUrl, tabId: result.tabId })
       } else {

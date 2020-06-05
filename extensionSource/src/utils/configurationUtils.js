@@ -9,7 +9,7 @@ export const saveConfiguration = async (configurationName, configToSave) => {
   configurations[configurationName] = configToSave;
 
   return new Promise((resolve, reject) => {
-    window.chrome.storage.sync.set( {configurations} , () => {
+    window.chrome.storage.local.set( {configurations} , () => {
       resolve(configurations);
     } )
   });
@@ -18,7 +18,7 @@ export const saveConfiguration = async (configurationName, configToSave) => {
 
 export const setConfigurations = (configurations) => {
   return new Promise((resolve, reject) => {
-    window.chrome.storage.sync.set( {configurations} , () => {
+    window.chrome.storage.local.set( {configurations} , () => {
       resolve(configurations);
     } )
   });
@@ -27,7 +27,7 @@ export const setConfigurations = (configurations) => {
 
 export const getConfiguration = () => {
   return new Promise((resolve, reject) => {
-  window.chrome.storage.sync.get(["configurations"], (configs) => {
+  window.chrome.storage.local.get(["configurations"], (configs) => {
     resolve(configs);
   });
 
@@ -36,7 +36,7 @@ export const getConfiguration = () => {
 
 export const getKeyHistory = () => {
   return new Promise((resolve, reject) => {
-  window.chrome.storage.sync.get(["keyHistory"], (keyHistory) => {
+  window.chrome.storage.local.get(["keyHistory"], (keyHistory) => {
     resolve(keyHistory);
   });
   })
@@ -61,7 +61,7 @@ export const setKeyHistory = async (currentConfig) => {
   });
 
   return new Promise((resolve, reject) => {
-    window.chrome.storage.sync.set({keyHistory: storedKeyHistory}, (keyHistory) => {
+    window.chrome.storage.local.set({keyHistory: storedKeyHistory}, (keyHistory) => {
     resolve(storedKeyHistory);
     });
   })
@@ -69,7 +69,7 @@ export const setKeyHistory = async (currentConfig) => {
 
 export const saveKeyHistory = (keyHistory) => {
   return new Promise((resolve, reject) => {
-    window.chrome.storage.sync.set({keyHistory}, (keyHistory) => {
+    window.chrome.storage.local.set({keyHistory}, (keyHistory) => {
     resolve(keyHistory);
     });
   })
